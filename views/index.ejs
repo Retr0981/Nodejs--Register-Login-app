@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login Register App</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+<script type="text/javascript">
+     $(document).ready(() => {
+     
+     $('#form1').submit((event) => {
+     	event.preventDefault();
+        
+        $.ajax({
+        	type: 'POST',
+        	url: '/',
+        	data: $('#form1').serialize(),
+        	dataType: "json",
+        	success: (response) => {
+        								$('#form1')[0].reset();
+
+						document.getElementById("check").innerHTML = response.Success;
+						//ADD THIS CODE
+						setTimeout(() => {
+							document.getElementById("check").innerHTML = "";
+						}, 3000);
+						if (response.Success == "You are regestered,You can login now.") {
+							document.getElementById("aa").click();
+						};
+					},
+					error: () => {
+					}
+       
+        })
+
+     })
+      
+
+});
+</script>
+</body>
+</html>
